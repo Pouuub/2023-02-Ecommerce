@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use App\Repository\PersonalRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Uid\UuidV6 as Uuid;
+use Symfony\Component\Uid\UuidV7 as Uuid;
 
 #[ORM\Entity(repositoryClass: PersonalRepository::class)]
 class Personal

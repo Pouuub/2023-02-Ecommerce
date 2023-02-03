@@ -21,6 +21,7 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
+    .addEntry('registration', './assets/js/registrationErrors.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
@@ -54,6 +55,19 @@ Encore
     .configureBabelPresetEnv((config) => {
         config.useBuiltIns = 'usage';
         config.corejs = '3.23';
+    })
+
+    .copyFiles({
+        from: './assets/images',
+
+         // optional target path, relative to the output dir
+        to: 'images/[path][name].[ext]',
+
+         // if versioning is enabled, add the file hash too
+        to: 'images/[path][name].[hash:8].[ext]',
+        
+         // only copy files matching this pattern
+        pattern: /\.(png|jpg|jpeg)$/
     })
 
     // enables Sass/SCSS support

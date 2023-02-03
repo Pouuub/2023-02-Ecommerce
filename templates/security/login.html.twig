@@ -3,7 +3,7 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-<form method="post">
+
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
@@ -14,25 +14,31 @@
         </div>
     {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+<div class="flex flex-col sm:flex-row h-screen">
+    <div class="md:w-1/2 flex justify-center m-auto">
+        <div class="p-6 h-fit bg-white sm:shadow-lg my-6 lg:m-0 w-11/12 rounded-lg transition-all">
+            <h2 class="text-4xl font-medium mb-6 text-center">C<span class="border-b-4 border-indigo-500">onnexio</span>n</h2>
+            <ul id="errors" class="text-sm rounded-md text-white mb-4 mt-1"></ul>
+            <small class="my-2">Vous n'avez pas encore de compte ?
+                <a href="{{path('app_register')}}" class="text-indigo-500 hover:text-indigo-700">S'inscrire</a>
+            </small>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+            <form method="post">
+                <label for="inputEmailOrUsername">Email or Username</label>
+                <input type="text" value="{{ last_username }}" name="email_or_username" id="inputEmailOrUsername" class="border border-gray-400 py-2 px-3 rounded-lg w-full mb-4 mt-1" autocomplete="email" required autofocus>
+                <label for="inputPassword">Mot de passe</label>
+                <input type="password" name="password" id="inputPassword" class="border border-gray-400 py-2 px-3 rounded-lg w-full mb-4 mt-1" autocomplete="current-password" required>
+            </form>
 
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
+            <div class="flex justify-end">
+                <button type="submit" class="bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-700">
+                    Se connecter
+                </button>
+            </div>
         </div>
-   
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
+    </div>
+    <div class="hidden lg:block sm:w-1/2 h-full bg-cover bg-center">
+        <div class="block h-full" style="background-image: url('/build/images/login.8262b599.jpg'); background-size: cover; background-position: center;"></div>
+    </div>
+</div>
 {% endblock %}

@@ -1,40 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Connexion{% endblock %}
 
 {% block body %}
-
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
 
 <div class="flex flex-col sm:flex-row h-screen">
     <div class="md:w-1/2 flex justify-center m-auto">
         <div class="p-6 h-fit bg-white sm:shadow-lg my-6 lg:m-0 w-11/12 rounded-lg transition-all">
-            <h2 class="text-4xl font-medium mb-6 text-center">C<span class="border-b-4 border-indigo-500">onnexio</span>n</h2>
-            <ul id="errors" class="text-sm rounded-md text-white mb-4 mt-1"></ul>
+            {% if app.user %}
+                <div class="mb-3 text-red-500 flex justify-between">
+                    Vous êtes déjà connecter en tant que {{ app.user.userIdentifier }}. <a href="{{ path('app_logout') }}">Se déconnecter</a>
+                </div>
+        {% endif %}
+            <h2 class="text-4xl font-medium mb-6 text-center">C<span class="border-b-4 border-indigo-500">onexio</span>n</h2>
+            {% if error %}
+                <div class="text-sm rounded-md text-white mb-4 mt-1 bg-red-500 p-4">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+            </ul>
             <small class="my-2">Vous n'avez pas encore de compte ?
                 <a href="{{path('app_register')}}" class="text-indigo-500 hover:text-indigo-700">S'inscrire</a>
             </small>
 
             <form method="post">
-                <label for="inputEmailOrUsername">Email or Username</label>
-                <input type="text" value="{{ last_username }}" name="email_or_username" id="inputEmailOrUsername" class="border border-gray-400 py-2 px-3 rounded-lg w-full mb-4 mt-1" autocomplete="email" required autofocus>
-                <label for="inputPassword">Mot de passe</label>
+                <label for="inputEmailOrUsername">E-mail ou Pseudonyme</label>
+                <input type="text" value="{{ last_username }}" name="email_or_username" id="inputEmailOrUsername" class="border border-gray-400 py-2 px-3 rounded-lg w-full mb-4 mt-1" required autofocus>
+                <label for="inputPassword">Password</label>
                 <input type="password" name="password" id="inputPassword" class="border border-gray-400 py-2 px-3 rounded-lg w-full mb-4 mt-1" autocomplete="current-password" required>
-            </form>
 
-            <div class="flex justify-end">
-                <button type="submit" class="bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-700">
-                    Se connecter
-                </button>
-            </div>
+                <input type="hidden" name="_csrf_token"
+                    value="{{ csrf_token('authenticate') }}"
+                >
+
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" name="_remember_me"> Se souvenir de moi
+                    </label>
+                </div>
+
+                <div class="flex justify-end">
+                    <button type="submit" class="bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-700">
+                        Se connecter
+                    </button>
+                </div>                
+            </form>
         </div>
     </div>
     <div class="hidden lg:block sm:w-1/2 h-full bg-cover bg-center">

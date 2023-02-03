@@ -1,0 +1,110 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+
+<header class="sticky -top-px bg-cyan-900 font-mont text-base text-truewhite h-20 z-30 px-4">
+    <div class="container h-full mx-auto items-center flex justify-between">
+        <img class="max-h-14 w-auto" src="{{asset('build/images/logo.svg')}}" alt="logo du garden-coworking">
+
+        <button id="burger" class="lg:hidden">
+            <div class="bg-white"></div>
+            <div class="bg-white"></div>
+            <div class="bg-white"></div>
+            <div class="bg-white"></div>
+        </button>
+
+        <nav id="nav" class="text-white fixed z-20 top-16 pt-4 lg:pt-0 bottom-0 -right-full w-60 lg:w-6/12 lg:static transition-all ease duration-500">
+            <ul class="lg:flex justify-between">
+                <div class="lg:flex">
+                    <li>
+                        <a class="block p-3" href="#">Boutique</a>
+                    </li>
+                </div>
+                <div class="lg:flex">
+                    <li class="self-center flex justify-center mt-5 lg:mr-2 lg:mt-0">
+                        <a class="block bg-indigo-500 rounded-md py-1 px-8 transition-all hover:bg-indigo-700" href="#">Inscription</a>
+                    </li>
+                    <li class="self-center flex justify-center mt-5 lg:mr-2 lg:mt-0">
+                        <a class="block bg-indigo-500 rounded-md py-1 px-8 transition-all hover:bg-indigo-700" href="#">Connexion</a>
+                    </li>
+                </div>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="h-[calc(theme('height.screen')-80px)] block lg:flex">
+    <div class="h-[calc(theme('height.screen')/2-40px)] lg:h-full flex w-full lg:w-1/3">
+        <div class="w-full h-full bg-cyan-900 pl-16 pr-16 lg:pr-0 py-10 md:py-24">
+            <h1 class="text-white text-5xl mb-4">L<span class="border-b-4 border-indigo-500">orem Ipsu</span>m</h1>
+            <p class="text-white text-xl">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi quia quaerat officiis saepe ab incidunt sit corrupti commodi atque iste!</p>
+        </div>
+    </div>
+
+    <div id="slider-section">
+        <div class="hidden lg:block absolute z-10 border-solid border-t-[calc(theme('height.screen')-80px)] border-t-cyan-900 border-r-[300px] border-r-transparent"></div>
+        <div id="slider">
+            <div class="w-full lg:w-2/3 h-[calc(theme('height.screen')/2-40px)] lg:h-[calc(theme('height.screen')-80px)] absolute opacity-0 ease-linear duration-300 bg-cover active-slide"></div>
+            <div class="w-full lg:w-2/3 h-[calc(theme('height.screen')/2-40px)] lg:h-[calc(theme('height.screen')-80px)] absolute opacity-0 ease-linear duration-300 bg-cover "></div>
+            <div class="w-full lg:w-2/3 h-[calc(theme('height.screen')/2-40px)] lg:h-[calc(theme('height.screen')-80px)] absolute opacity-0 ease-linear duration-300 bg-cover "></div>
+            <div class="w-full lg:w-2/3 h-[calc(theme('height.screen')/2-40px)] lg:h-[calc(theme('height.screen')-80px)] absolute opacity-0 ease-linear duration-300 bg-cover "></div>
+        </div>
+        <div id="choice-slide" class="bg-cyan-900 rounded-md absolute w-32 h-2 bottom-3 right-4 flex">
+            <div data-id='0' class='w-1/4 h-full rounded-l-md ease-linear duration-300 cursor-pointer bg-indigo-500'></div>
+            <div data-id='1' class='w-1/4 h-full ease-linear duration-300 cursor-pointer'></div>
+            <div data-id='2' class='w-1/4 h-full ease-linear duration-300 cursor-pointer'></div>
+            <div data-id='3' class='w-1/4 h-full rounded-r-md ease-linear duration-300 cursor-pointer'></div>
+        </div>
+    </div>
+
+</section>
+
+<script>
+
+document.getElementById("burger").addEventListener("click", function () {
+                document.getElementById("nav").classList.toggle("-right-full")
+                document.getElementById("nav").classList.toggle("right-0")
+                document.getElementById("nav").classList.toggle("bg-cyan-800")
+                document.getElementById("burger").classList.toggle("active-burger")
+            })
+
+
+
+                const slides = document.querySelectorAll('#slider div');
+                const choices = document.querySelectorAll('#choice-slide div');
+                var activeSlide = 0;
+                const nbslide = 4;
+                const timeInterval = 5000; //mill
+
+                const changeSlide = () => {
+                    if (activeSlide < 3) {
+                        slides[activeSlide].classList.toggle("active-slide");
+                        slides[activeSlide+1].classList.toggle("active-slide");
+                        choices[activeSlide].classList.toggle("bg-indigo-500");
+                        choices[activeSlide+1].classList.toggle("bg-indigo-500");
+                        activeSlide++;
+                    } else {
+                        slides[activeSlide].classList.toggle("active-slide");
+                        slides[0].classList.toggle("active-slide");
+                        choices[activeSlide].classList.toggle("bg-indigo-500");
+                        choices[0].classList.toggle("bg-indigo-500");
+                        activeSlide = 0;
+                    }
+                };
+            
+                let slideInterval = window.setInterval(changeSlide, timeInterval);
+                choices.forEach(choice => {
+                    choice.addEventListener("click", function () {
+                        slides[activeSlide].classList.toggle("active-slide");
+                        slides[parseInt(choice.dataset.id)].classList.toggle("active-slide");
+                        choices[activeSlide].classList.toggle("bg-indigo-500");
+                        choices[parseInt(choice.dataset.id)].classList.toggle("bg-indigo-500");
+                        activeSlide = parseInt(choice.dataset.id);
+                        window.clearInterval(slideInterval);
+                        slideInterval = window.setInterval(changeSlide, timeInterval);
+                    })
+                });
+</script>
+{% endblock %}

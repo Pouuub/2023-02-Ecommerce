@@ -11,68 +11,76 @@
     </div>
     
     <div class="md:w-1/2 flex justify-center m-auto">
-        <div class="p-6 h-fit bg-white sm:shadow-lg w-11/12 rounded-lg transition-all">
+        <div class="p-6 h-fit bg-white sm:shadow-lg my-6 lg:m-0 w-11/12 rounded-lg transition-all">
             <h2 class="text-4xl font-medium mb-6 text-center">In<span class="border-b-4 border-indigo-500">scriptio</span>n</h2>
-            <ul id="errors" class="text-sm p-4 rounded-md text-white mb-2"></ul>
+            <ul id="errors" class="text-sm rounded-md text-white mb-4 mt-1"></ul>
+            <small class="my-2">Vous avez déjà un compte ?
+                <a href="{{path('app_login')}}" class="text-indigo-500 hover:text-indigo-700">Se connecter</a>
+            </small>
             {{ form_start(registrationForm, {'attr': {'id': 'form'}}) }}
 
                 {{ form_row(registrationForm.email, {
                     label: 'E-mail :',
                     attr: {
-                        class: 'border border-gray-400 py-2 px-3 rounded-lg w-full my-2'
+                        class: 'border border-gray-400 py-2 px-3 rounded-lg w-full mb-4 mt-1'
                     }})
                 }}
 
                 {{ form_row(registrationForm.pseudonym, {
                     label: 'Pseudonyme :',
                     attr: {
-                        class: 'border border-gray-400 py-2 px-3 rounded-lg w-full my-2'
+                        class: 'border border-gray-400 py-2 px-3 rounded-lg w-full mb-4 mt-1'
                     }})
                 }}
 
-            <div class="lg:flex justify-around">
-                {{ form_row(registrationForm.firstname, {
-                    label: 'Prénom :',
-                    attr: {
-                        class: 'border border-gray-400 py-2 px-3 rounded-lg w-full my-2'
-                    }})
-                }}
-                <div class="w-2 hidden lg:block"></div>
-                {{ form_row(registrationForm.lastname, {
-                    label: 'Nom :',
-                    attr: {
-                        class: 'border border-gray-400 py-2 px-3 rounded-lg w-full my-2'
-                    }})
-                }}
+            <div class="lg:grid lg:grid-cols-2 grid-rows-1 gap-2">
+                <div class="lg:col-start-1">
+                    {{ form_row(registrationForm.lastname, {
+                        label: 'Nom :',
+                        attr: {
+                            class: 'border border-gray-400 py-2 px-3 rounded-lg w-full mb-4 mt-1'
+                        }})
+                    }}
+                </div>
+                <div class="lg:col-start-2">
+                    {{ form_row(registrationForm.firstname, {
+                        label: 'Prénom :',
+                        attr: {
+                            class: 'border border-gray-400 py-2 px-3 rounded-lg w-full mb-4 mt-1'
+                        }})
+                    }}
+                </div>
             </div>
 
-            <div class="lg:flex justify-around mb-4">
-            
-                {{ form_row(registrationForm.plainPassword.first, {
-                    label: 'Mot de passe :',
-                    attr: {
-                        class: 'border border-gray-400 py-2 px-3 rounded-lg w-full my-2'
-                    }})
-                }}
-                <div class="w-3 hidden lg:block"></div>
+            <div class="lg:grid lg:grid-cols-2 grid-rows-1 gap-2">
+                <div class="lg:col-start-1">
+                    {{ form_row(registrationForm.plainPassword.first, {
+                        label: 'Mot de passe :',
+                        attr: {
+                            class: 'border border-gray-400 py-2 px-3 rounded-lg w-full mb-4 mt-1'
+                        }})
+                    }}
+                </div>
+                <div class="lg:col-start-2">
                 {{ form_row(registrationForm.plainPassword.second, {
                     label: 'Confirmer le mot de passe :',
                     attr: {
-                    class: 'border border-gray-400 py-2 px-3 rounded-lg w-full my-2'
+                    class: 'border border-gray-400 py-2 px-3 rounded-lg w-full mb-4 mt-1'
                     }})
                 }}
+                </div>
             </div>
 
-            <small class="mb-4 flex">
+            <small class="mb-4 mt-1 flex">
                 {{ form_row(registrationForm.agreeTerms, {label: ' '}) }}
                 <span class="ml-2">
                     J’ai lu et j’accepte les
-                    <a href="#" class="text-indigo-500">conditions d’utilisation</a>.
+                    <a href="#" class="text-indigo-500 hover:text-indigo-700">conditions d’utilisation</a>.
                 </span>
             </small>
 
             <div class="flex justify-end">
-                <button type="submit" class="bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-600">
+                <button type="submit" class="bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-700">
                     S'inscrire
                 </button>
             </div>

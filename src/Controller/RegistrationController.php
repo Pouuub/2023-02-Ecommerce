@@ -59,7 +59,7 @@ class RegistrationController extends AbstractController
             );
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('app_test');
+            return $this->redirectToRoute('app_wait_mail');
         }
 
         $errors = $formErrorService->getErrorsFromForm($form);
@@ -89,5 +89,11 @@ class RegistrationController extends AbstractController
         $this->addFlash('success', 'Your email address has been verified.');
 
         return $this->redirectToRoute('app_test');
+    }
+
+    #[Route('/wait/mail', name: 'app_wait_mail')]
+    public function wait(): Response
+    {
+        return $this->render('registration/wait_mail.html.twig');
     }
 }

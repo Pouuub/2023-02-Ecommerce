@@ -2,54 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 body {
     background-color: #f5f5f5;
-}
-
-#burger{
-    div {
-        width: 30px;
-        height: 3px;
-        margin-top:6px;
-        border-radius: 20px;
-        transition: 0.2s ease-in-out;
-    }
-    div:nth-child(2) {
-        position: absolute;
-    }
-}
-
-.active-burger {
-    div:nth-child(1) {
-        opacity: 0;
-    }
-    div:nth-child(2) {
-        transform: rotate(45deg);
-    }
-    div:nth-child(3) {
-        transform: rotate(-45deg);
-    }
-    div:nth-child(4) {
-        opacity: 0;
-    }
-}
-
-#slider-section {
-    #slider {
-        div:nth-child(1){
-            background-image: url('../images/slide1.jpg');
-        }
-        div:nth-child(2){
-            background-image: url('../images/slide2.jpg');
-        }
-        div:nth-child(3){
-            background-image: url('../images/slide3.jpg');
-        }
-        div:nth-child(4){
-            background-image: url('../images/slide4.jpg');
-        }
-        .active-slide {
-            opacity: 1;
-        }
-    }
 }

@@ -25,13 +25,7 @@ class Article
     private ?string $description = null;
 
     #[ORM\Column]
-    private ?float $price_ht = null;
-
-    #[ORM\Column]
-    private ?float $tva = null;
-
-    #[ORM\Column]
-    private ?float $price_ttc = null;
+    private ?float $price;
 
     #[ORM\Column]
     private bool $online = false;
@@ -40,13 +34,16 @@ class Article
     private ?int $stock = null;
 
     #[ORM\Column]
-    private ?int $popularity = null;
+    private int $popularity = 0;
 
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'articles')]
     private Collection $categories;
 
     #[ORM\ManyToMany(targetEntity: Order::class, mappedBy: 'articles')]
     private Collection $orders;
+
+    #[ORM\Column(length: 255)]
+    private ?string $img = null;
 
     public function __construct()
     {
@@ -83,38 +80,14 @@ class Article
         return $this;
     }
 
-    public function getPriceHt(): ?float
+    public function getPrice(): ?float
     {
-        return $this->price_ht;
+        return $this->price;
     }
 
-    public function setPriceHt(float $price_ht): self
+    public function setPrice(float $price_ht): self
     {
-        $this->price_ht = $price_ht;
-
-        return $this;
-    }
-
-    public function getTva(): ?float
-    {
-        return $this->tva;
-    }
-
-    public function setTva(float $tva): self
-    {
-        $this->tva = $tva;
-
-        return $this;
-    }
-
-    public function getPriceTtc(): ?float
-    {
-        return $this->price_ttc;
-    }
-
-    public function setPriceTtc(float $price_ttc): self
-    {
-        $this->price_ttc = $price_ttc;
+        $this->price= $price_ht;
 
         return $this;
     }
@@ -143,7 +116,7 @@ class Article
         return $this;
     }
 
-    public function getPopularity(): ?int
+    public function getPopularity(): int
     {
         return $this->popularity;
     }
@@ -202,6 +175,18 @@ class Article
         if ($this->orders->removeElement($order)) {
             $order->removeArticle($this);
         }
+
+        return $this;
+    }
+
+    public function getImg(): ?string
+    {
+        return $this->img;
+    }
+
+    public function setImg(string $img): self
+    {
+        $this->img = $img;
 
         return $this;
     }

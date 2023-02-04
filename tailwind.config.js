@@ -5,7 +5,16 @@ module.exports = {
     "./templates/**/*.html.twig",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'base': '#051C2A',
+        'primary': '#785964',
+      },
+      fontFamily: {
+        'raleway': 'Raleway',
+        'scp': 'Source+Code+Pro',
+      }
+    },
   },
   plugins: [],
 }

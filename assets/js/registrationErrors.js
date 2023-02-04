@@ -22,7 +22,7 @@ form.addEventListener("submit", function(e){
             
         if (this.status === 200) {
             document.cookie = "flavor=choco; SameSite=Strict; Secure;";
-            window.location.replace("/test");
+            window.location.replace("/wait/mail");
         }
     }
     xhr.send(formData)

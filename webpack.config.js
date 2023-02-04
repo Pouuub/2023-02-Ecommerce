@@ -22,6 +22,10 @@ Encore
      */
     .addEntry('app', './assets/app.js')
     .addEntry('registration', './assets/js/registrationErrors.js')
+    .addEntry('navbar', './assets/js/navbar.js')
+    .addStyleEntry('navbarStyle', './assets/styles/navbar.scss')
+    .addEntry('homepage', './assets/js/homepage.js')
+    .addStyleEntry('homepageStyle', './assets/styles/homepage.scss')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
@@ -67,7 +71,7 @@ Encore
         to: 'images/[path][name].[hash:8].[ext]',
         
          // only copy files matching this pattern
-        pattern: /\.(png|jpg|jpeg)$/
+        pattern: /\.(png|jpg|svg|jpeg|webp)$/
     })
 
     // enables Sass/SCSS support

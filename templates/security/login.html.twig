@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<div class="flex flex-col sm:flex-row h-screen">
+<div class="font-raleway flex flex-col sm:flex-row h-screen">
     <div class="md:w-1/2 flex justify-center m-auto">
         <div class="p-6 h-fit bg-white sm:shadow-lg my-6 lg:m-0 w-11/12 rounded-lg transition-all">
             {% if app.user %}
@@ -46,7 +46,7 @@
         </div>
     </div>
     <div class="hidden lg:block sm:w-1/2 h-full bg-cover bg-center">
-        <div class="block h-full" style="background-image: url('/build/images/login.8262b599.jpg'); background-size: cover; background-position: center;"></div>
+        <div class="block h-full" style="background-image: url({{asset('build/images/login.webp')}}); background-size: cover; background-position: center;"></div>
     </div>
 </div>
 {% endblock %}

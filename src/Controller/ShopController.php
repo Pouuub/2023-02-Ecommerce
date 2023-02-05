@@ -16,15 +16,19 @@ class ShopController extends AbstractController
     public function index( ArticleRepository $articleRepository, Request $request): Response
     {
         $data = new SearchData;
+        $data->page = $request->get('page', 1);
         $form = $this->createForm(SearchForm::class, $data);
         $form->handleRequest($request);
-        //dd($data);
+        [$min, $max] = $articleRepository->findMinMax($data);
+
         $articles = $articleRepository->findSearch($data);
         
         return $this->render('shop/index.html.twig', [
             'controller_name' => 'ShopController',
             'articles' => $articles,
-            'form' => $form
+            'form' => $form,
+            'min' => $min,
+            'max' => $max
         ]);
     }
 }

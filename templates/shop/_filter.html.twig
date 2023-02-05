@@ -1,21 +1,40 @@
-{{ form_start(form, {'attr': {class: 'block sticky top-20'}}) }}
-    {{ form_row(form.q) }}
-
-    <h4>Catégories</h4>
-    {{ form_widget(form.categories) }}
-
-    <h4>Prix</h4>
-    <div class="grid grid-cols-2">
-        <div class="row-span-1">
-            {{ form_row(form.min) }}
-        </div>
-        <div class="row-span-2">
-            {{ form_row(form.max) }}
-        </div>
+<aside class="bg-white p-6 block sticky top-20 mb-4">
+    {{ form_start(form) }}
+    <div class="mb-4">
+        {{ form_row(form.q, {
+            attr: {
+                class: 'border border-gray-400 px-3 rounded-sm w-full mb-2 mt-1'
+            }})
+        }}
     </div>
 
-    <button type="submit" class="w-full bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-700">
+    <h4 class="mb-2 font-bold">Catégories :</h4>
+        <div class="mb-4 flex flex-col">
+            {% for child in form.categories %}
+                <div class="w-full">
+                {{ form_widget(child) }}
+                {{ form_label(child) }}
+                </div>
+            {% endfor %}
+        </div>
+
+
+    <h4 class="mb-2 font-bold">Prix :</h4>
+        {{ form_row(form.min, {
+            attr: {
+                class: 'border border-gray-400 px-3 rounded-sm w-full mb-2 mt-1'
+            }})
+        }}
+        {{ form_row(form.max, {
+            attr: {
+                class: 'border border-gray-400 px-3 rounded-sm w-full mb-4 mt-1'
+            }})
+        }}
+    
+    <div id="price-slider" data-min={{ min }} data-max={{ max }} class="mb-4"></div>
+
+    <button type="submit" class="w-full bg-primary transition-all text-white py-2 px-4 rounded hover:bg-indigo-700">
         Filtrer
     </button>
-
-{{ form_end(form) }}
+    {{ form_end(form) }}
+</aside>

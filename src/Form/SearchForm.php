@@ -28,7 +28,6 @@ class SearchForm extends AbstractType
                 'class' => Category::class,
                 'expanded' => true,
                 'multiple' => true
-
             ])
             ->add('min', NumberType::class, [
                 'label' => false,

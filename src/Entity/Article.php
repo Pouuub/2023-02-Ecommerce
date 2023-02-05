@@ -51,6 +51,11 @@ class Article
         $this->orders = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->title;
+    }
+
     public function getId(): ?Uuid
     {
         return $this->id;

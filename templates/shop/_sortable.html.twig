@@ -1,0 +1,14 @@
+<a{% for attr, value  in options | merge({class: 'bg-primary text-white py-2 px-3 rounded transition-all hover:bg-indigo-700'})%} {{ attr }}="{{ value }}"{% endfor %}>
+    <span class="flex">
+        {{ title }}
+        {% if sorted %}
+            {% if direction == 'desc' %}
+                <img src="{{asset('build/images/sort_down.svg')}}" class="h-6 ml-2">
+            {% else %}
+                <img src="{{asset('build/images/sort_up.svg')}}" class="h-6 ml-2">
+            {% endif %}
+        {% else %}
+            <img src="{{asset('build/images/sort.svg')}}" class="h-6 ml-2">
+        {% endif %}
+    </span>
+</a>

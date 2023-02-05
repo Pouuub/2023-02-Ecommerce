@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Starlight - Boutique{% endblock %}
+
+{% block body %}
+{% block stylesheets %}
+    {{parent()}}
+    {{ encore_entry_link_tags('navbarStyle') }}
+{% endblock %}
+
+{{parent()}}
+
+<section class="container">
+    <img src="{{asset('build/images/' ~ article.img)}}" alt="{{article.title}}">
+</section>
+
+{% include "includes/_footer.html.twig" %}
+{% block javascripts %}
+    {{parent()}}
+    {{encore_entry_script_tags('shop')}}
+{% endblock %}
+{% endblock %}

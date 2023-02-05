@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Data\SearchData;
 use App\Form\SearchForm;
 use App\Repository\ArticleRepository;
+use Symfony\Component\Uid\UuidV7 as Uuid;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -37,6 +38,19 @@ class ShopController extends AbstractController
             'form' => $form,
             'min' => $min,
             'max' => $max
+        ]);
+    }
+
+    #[Route('/shop/{slug}', name: 'app_article')]
+    public function number(string $slug, ArticleRepository $articleRepository): Response
+    {
+        $article = $articleRepository->findOneBySlug($slug);
+
+        dump($article);
+
+        return $this->render('shop/article.html.twig', [
+            'controller_name' => 'ShopController',
+            'article' => $article
         ]);
     }
 }

@@ -12,9 +12,11 @@ module.exports = {
       },
       fontFamily: {
         'raleway': 'Raleway',
-        'scp': 'Source+Code+Pro',
+        'scp': 'SourceCodePro',
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+  ],
 }

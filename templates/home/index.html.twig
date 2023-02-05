@@ -15,14 +15,14 @@
         <div class="w-full h-full text-white bg-base pl-16 pr-16 lg:pr-0 py-10 lg:py-24">
             <h1 class="font-scp font-semibold tracking-widest text-4xl sm:text-5xl mb-6">S<span class="border-b-4 border-primary">tarligh</span>t</h1>
             <p class="font-raleway mb-4 sm:text-xl">Nous sommes sûrs que vous serez émerveillé par la beauté et la magie de nos astres.</p>
-            <a class="block bg-primary rounded-md py-1 px-8 transition-all hover:bg-indigo-700 w-fit" href="#">Découvrir la boutique</a>
+            <a class="block bg-primary rounded-md py-1 px-8 transition-all hover:bg-indigo-700 w-fit" href="{{path('app_shop')}}">Découvrir la boutique</a>
         </div>
     </div>
 
     <div id="slider-section" class="h-[calc(theme('height.screen')/2-40px)]">
         <div class="hidden lg:block absolute z-10 border-solid border-t-[calc(theme('height.screen')-80px)] border-t-base border-r-[300px] border-r-transparent"></div>
         <div id="slider">
-            <div class="w-full lg:w-2/3 h-[calc(theme('height.screen')/2-40px)] lg:h-[calc(theme('height.screen')-80px)] absolute opacity-100 ease-linear duration-300 bg-cover" style="background-image: url({{asset('build/images/slide1.webp')}});"></div>
+            <div class="w-full lg:w-2/3 h-[calc(theme('height.screen')/2-40px)] lg:h-[calc(theme('height.screen')-80px)] absolute opacity-0 ease-linear duration-300 bg-cover active-slide" style="background-image: url({{asset('build/images/slide1.webp')}});"></div>
             <div class="w-full lg:w-2/3 h-[calc(theme('height.screen')/2-40px)] lg:h-[calc(theme('height.screen')-80px)] absolute opacity-0 ease-linear duration-300 bg-cover" style="background-image: url({{asset('build/images/slide2.webp')}});"></div>
             <div class="w-full lg:w-2/3 h-[calc(theme('height.screen')/2-40px)] lg:h-[calc(theme('height.screen')-80px)] absolute opacity-0 ease-linear duration-300 bg-cover" style="background-image: url({{asset('build/images/slide3.webp')}});"></div>
             <div class="w-full lg:w-2/3 h-[calc(theme('height.screen')/2-40px)] lg:h-[calc(theme('height.screen')-80px)] absolute opacity-0 ease-linear duration-300 bg-cover" style="background-image: url({{asset('build/images/slide4.webp')}});"></div>
@@ -64,10 +64,10 @@
                 <h2 class="mb-6 text-sm font-semibold text-white uppercase ">Navigation</h2>
                 <ul class="text-gray-500">
                     <li class="mb-4">
-                        <a href="https://flowbite.com/" class="hover:underline">Accueil</a>
+                        <a href="{{path('app_home')}}" class="hover:underline">Accueil</a>
                     </li>
                     <li>
-                        <a href="https://tailwindcss.com/" class="hover:underline">Boutique</a>
+                        <a href="{{path('app_shop')}}" class="hover:underline">Boutique</a>
                     </li>
                 </ul>
             </div>

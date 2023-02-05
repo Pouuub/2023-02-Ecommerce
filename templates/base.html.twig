@@ -31,15 +31,21 @@
                     <nav id="nav" class="text-white fixed z-20 top-16 pt-4 lg:pt-0 bottom-0 -right-full w-60 lg:w-5/12 lg:static transition-all ease duration-500">
                         <ul class="lg:flex justify-between">
                             <li>
-                                <a class="block p-3 transition-all hover:text-primary" href="#">Boutique</a>
+                                <a class="block p-3 transition-all hover:text-primary" href="{{path('app_shop')}}">Boutique</a>
                             </li>
                             <div class="lg:flex">
                                 <li class="self-center flex justify-center mt-5 lg:mr-2 lg:mt-0">
                                     <a class="block bg-primary rounded-md py-1 px-8 transition-all hover:bg-indigo-700" href="{{path('app_register')}}">Inscription</a>
                                 </li>
-                                <li class="self-center flex justify-center mt-5 lg:mr-2 lg:mt-0">
-                                    <a class="block bg-primary rounded-md py-1 px-8 transition-all hover:bg-indigo-700" href="{{path('app_login')}}">Connexion</a>
-                                </li>
+                                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                    <li class="self-center flex justify-center mt-5 lg:mr-2 lg:mt-0">
+                                        <a class="block bg-primary rounded-md py-1 px-8 transition-all hover:bg-indigo-700" href="{{path('app_logout')}}">Déconnexion</a>
+                                    </li>
+                                {% else %}
+                                    <li class="self-center flex justify-center mt-5 lg:mr-2 lg:mt-0">
+                                        <a class="block bg-primary rounded-md py-1 px-8 transition-all hover:bg-indigo-700" href="{{path('app_login')}}">Connexion</a>
+                                    </li>
+                                {% endif %}
                             </div>
                         </ul>
                     </nav>

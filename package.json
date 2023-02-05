@@ -25,5 +25,10 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
+    },
+    "dependencies": {
+        "@tailwindcss/line-clamp": "^0.4.2",
+        "flip-toolkit": "^7.0.17",
+        "nouislider": "^15.6.1"
     }
 }

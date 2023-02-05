@@ -1,5 +1,5 @@
 <a{% for attr, value  in options | merge({class: 'bg-primary text-white py-2 px-3 rounded transition-all hover:bg-indigo-700'})%} {{ attr }}="{{ value }}"{% endfor %}>
-    <span class="flex">
+    <span class="flex pointer-events-none">
         {{ title }}
         {% if sorted %}
             {% if direction == 'desc' %}

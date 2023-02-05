@@ -5,10 +5,11 @@ namespace App\Controller;
 use App\Data\SearchData;
 use App\Form\SearchForm;
 use App\Repository\ArticleRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 
 class ShopController extends AbstractController
 {
@@ -20,8 +21,15 @@ class ShopController extends AbstractController
         $form = $this->createForm(SearchForm::class, $data);
         $form->handleRequest($request);
         [$min, $max] = $articleRepository->findMinMax($data);
-
         $articles = $articleRepository->findSearch($data);
+
+        if ($request->get('ajax')) {
+            return new JsonResponse([
+                'content' => $this->renderView('shop/_articles.html.twig', ['articles' => $articles]),
+                'sorting' => $this->renderView('shop/_sorting.html.twig', ['articles' => $articles]),
+                'pagination' => $this->renderView('shop/_pagination.html.twig', ['articles' => $articles])
+            ]);
+        }
         
         return $this->render('shop/index.html.twig', [
             'controller_name' => 'ShopController',

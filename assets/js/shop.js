@@ -1,5 +1,10 @@
 import noUiSlider from 'nouislider';
+import Filter from './modules/Filter';
 
+new Filter(document.querySelector('.js-filter'))
+
+
+//price slider
 const slider = document.getElementById('price-slider');
 
 if (slider) {
@@ -24,5 +29,18 @@ if (slider) {
             max.value = Math.round(value[1]);
         }
     })
+    range.on('end', function (values, handle) {
+        min.dispatchEvent(new Event('change'));
+        max.dispatchEvent(new Event('change'));
+    })
     ;
 }
+
+//event change sur keyup des inputs (recherche ajax)
+const form = document.querySelector('.js-filter-form');
+
+form.querySelectorAll('input').forEach(input => {
+    input.addEventListener("keyup", (event) => {
+        input.dispatchEvent(new Event('change'));
+    })
+})

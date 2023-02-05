@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Data\SearchData;
 use App\Entity\Article;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -47,6 +48,48 @@ class ArticleRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
         ;
+    }
+
+    /**
+     * 
+     * Récupère les articles en lien avec une recherche
+     * @return Article[]
+     * 
+     */
+    public function findSearch(SearchData $search): array
+    {
+        $query = $this
+            ->createQueryBuilder('a')
+            ->select('c', 'a')
+            ->join('a.categories', 'c');
+
+        if(!empty($search->q)) {
+            $query = $query
+                ->andWhere('a.title LIKE :q')
+                ->orWhere('a.description LIKE :q')
+                ->setParameter('q', "%{$search->q}%");
+        }
+
+        if(!empty($search->min)) {
+            $query = $query
+            ->andWhere('a.price >= :min')
+            ->setParameter('min', $search->min);
+        }
+
+        if(!empty($search->max)) {
+            $query = $query
+            ->andWhere('a.price <= :max')
+            ->setParameter('max', $search->max);
+        }
+
+        if(!empty($search->categories)) {
+            $query = $query
+                ->andWhere('c.id IN :categories')
+                ->setParameter('categories', $search->categories);
+        }
+        ;
+            
+        return $query->getQuery()->getResult();
     }
 
 //    /**

@@ -7,8 +7,8 @@ const timeInterval = 5000; //mill
 
 const changeSlide = () => {
     if (activeSlide < 3) {
-        slides[activeSlide].classList.toggle("opacity-100");
-        slides[activeSlide+1].classList.toggle("opacity-100");
+        slides[activeSlide].classList.toggle("active-slide");
+        slides[activeSlide+1].classList.toggle("active-slide");
         choices[activeSlide].classList.toggle("bg-primary");
         choices[activeSlide+1].classList.toggle("bg-primary");
         activeSlide++;

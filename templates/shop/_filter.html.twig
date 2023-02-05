@@ -1,0 +1,21 @@
+{{ form_start(form, {'attr': {class: 'block sticky top-20'}}) }}
+    {{ form_row(form.q) }}
+
+    <h4>Catégories</h4>
+    {{ form_widget(form.categories) }}
+
+    <h4>Prix</h4>
+    <div class="grid grid-cols-2">
+        <div class="row-span-1">
+            {{ form_row(form.min) }}
+        </div>
+        <div class="row-span-2">
+            {{ form_row(form.max) }}
+        </div>
+    </div>
+
+    <button type="submit" class="w-full bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-700">
+        Filtrer
+    </button>
+
+{{ form_end(form) }}

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Starlight - Boutique{% endblock %}
+
+{% block body %}
+{{parent()}}
+
+<section class="flex p-8">
+    <div class="w-64">
+        {% include "shop/_filter.html.twig" %}
+    </div>
+    <div class="w-full grid grid-cols-[repeat(auto-fit,500px)] grid-rows-[repeat(auto-fit, 208) gap-4">
+        {% for article in articles %}
+            {% include "shop/_card.html.twig" with {article: article} only %}
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

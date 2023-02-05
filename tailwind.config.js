@@ -12,7 +12,7 @@ module.exports = {
       },
       fontFamily: {
         'raleway': 'Raleway',
-        'scp': 'Source+Code+Pro',
+        'scp': 'SourceCodePro',
       }
     },
   },

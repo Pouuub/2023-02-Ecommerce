@@ -19,15 +19,9 @@
 
             <header class="font-raleway sticky -top-px bg-base font-mont text-base text-truewhite h-20 z-30 px-4">
                 <div class="container h-full mx-auto items-center flex justify-between">
-                    <a href="{{path('app_home')}}"><img class="max-h-14 w-auto" src="{{asset('build/images/logo.svg')}}" alt="logo du garden-coworking"></a>
+                    <a class="animate-spin" href="{{path('app_home')}}"><img class="max-h-14 w-auto" src="{{asset('build/images/logo.svg')}}" alt="logo du garden-coworking"></a>
 
-                    <button id="burger" class="lg:hidden">
-                        <div class="bg-white"></div>
-                        <div class="bg-white"></div>
-                        <div class="bg-white"></div>
-                        <div class="bg-white"></div>
-                    </button>
-
+                <div class="flex justify-between">
                     <nav id="nav" class="text-white fixed z-20 top-16 pt-4 lg:pt-0 bottom-0 -right-full w-60 lg:w-5/12 lg:static transition-all ease duration-500">
                         <ul class="lg:flex justify-between">
                             <li>
@@ -49,9 +43,16 @@
                             </div>
                         </ul>
                     </nav>
+                    <a class="lg:mt-2 ml-2"href="{# {{path('app_cart')}} #}"><img class="h-8" src="{{asset('build/images/cart.svg')}}" alt="icon panier"></a>
+
+                    <button id="burger" class="lg:hidden ml-4 mt-1">
+                        <div class="bg-white"></div>
+                        <div class="bg-white mt-[6px]"></div>
+                        <div class="bg-white mt-[6px]"></div>
+                        <div class="bg-white mt-[6px]"></div>
+                    </button>
                 </div>
             </header>
-        
         {% endblock %}
     </body>
 </html>

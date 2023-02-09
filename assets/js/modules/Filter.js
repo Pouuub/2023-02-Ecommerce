@@ -102,7 +102,7 @@ export default class Filter {
                     element.style.opacity = opacity;
                     element.style.transform = `translateY(${translateY}px)`;
                 },
-                delay: index * 20
+                delay: index * 10
             })
         }
         const flipper = new Flipper({

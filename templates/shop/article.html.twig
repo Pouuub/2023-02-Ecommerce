@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Starlight - Boutique{% endblock %}
+
+{% block body %}
+{% block stylesheets %}
+    {{parent()}}
+    {{ encore_entry_link_tags('navbarStyle') }}
+{% endblock %}
+
+{{parent()}}
+
+<section class="container mx-auto lg:py-24 flex flex-col justify-between lg:flex-row w-fit">
+  <div class="w-full sm:1/3 lg:w-1/4"> 
+    <img src="{{asset('build/images/' ~ article.img)}}" alt="{{article.title}}" alt="{{article.title}}" class="w-full h-96 object-cover">
+  </div>
+  <div class="w-full lg:w-1/2 p-6">
+    <h1 class="text-4xl font-scp mb-4">{{article.title}}</h1>
+    <div class="text-xl mb-2">Description :</div>
+    <p class="text-base">{{article.description}}</p>
+  </div>
+  <div class="w-full lg:w-1/5 p-6">
+    <div class="bg-primary text-white p-4 shadow rounded">
+      <h3 class="text-lg font-bold">{{ (article.stock > 0) ? 'En stock' : 'Rupture de stock' }}</h3>
+      <div class="mt-4 flex flex-col">
+        <a href="#" class="w-full bg-white text-black transition-all hover:bg-gray-300 p-2 rounded mb-2">Ajouter au panier</a>
+        <a href="#" class="w-full bg-white text-black transition-all hover:bg-gray-300 p-2 rounded">Acheter maintenant</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "includes/_footer.html.twig" %}
+
+{% block javascripts %}
+    {{parent()}}
+    {{encore_entry_script_tags('navbar')}}
+{% endblock %}
+{% endblock %}

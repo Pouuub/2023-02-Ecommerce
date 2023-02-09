@@ -28,6 +28,7 @@
     },
     "dependencies": {
         "@tailwindcss/line-clamp": "^0.4.2",
+        "aos": "^2.3.4",
         "flip-toolkit": "^7.0.17",
         "nouislider": "^15.6.1"
     }
